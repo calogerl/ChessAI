@@ -12,10 +12,11 @@ class Board
         long int WP,WN,WB,WR,WQ,WK,BP,BN,BB,BR,BQ,BK;
         char chessBoard[8][8];
         void arraytoBitBoard();
+        void convertStringToBitBoard(bin_num);
 
     public:
         Board(); //default constructor
-
+        
         
 
 };

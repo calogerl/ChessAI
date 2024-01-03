@@ -23,10 +23,45 @@ Board::arraytoBitBoard() //convert current board into bitboards
     for(int i=0 ; i<64 ; i++)
     {
         Binary="0000000000000000000000000000000000000000000000000000000000000000"; //64 bit binary number
+
+        switch (chessBoard[i/8][i%8])
+        {
+            case "P":
+            break;
+            case "N":
+            break;
+            case "B":
+            break;
+            case "R":
+            break;
+            case "Q":
+            break;
+            case "K":
+            break;
+            case "P":
+            break;
+            case "n":
+            break;
+            case "b":
+            break;
+            case "r":
+            break;
+            case "q":
+            break;
+            case "k":
+            break;
+
+            
+        }
     }
 
     //1 generate string for piece, for start white r is "10000000100000000000000000000000000000"
     //2. Convert string into binary
     //3. assign number to board, numerical value irrelevent, binary relevent
+
+}
+
+Board:: convertStringToBitBoard(bin_num)
+{
 
 }

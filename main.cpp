@@ -1,7 +1,9 @@
 #include <SFML/Graphics.hpp>
+
+#include "Board.h"
 #define BOARDWIDTH 800
 #define BOARDLENGTH 800
-void draw_board(sf::RenderWindow window);
+
 void draw_pieces(sf::RenderWindow window);
 void load_pngs();
 
@@ -39,10 +41,7 @@ int main()
     WKing.loadFromFile("./king.png");
     BKing.loadFromFile("./king1.png");
 
-
-
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
+    Board GameBoard;
 
     while (window.isOpen()) 
     {
@@ -54,16 +53,10 @@ int main()
         }
 
         window.clear(); //clear previous contents
-        draw_board(window);
-        draw_pieces(window);
-        window.draw(shape); //draw new stuff
+        GameBoard.Display_Board();
+        //draw new stuff
         window.display(); //display to screen
     }
 
     return 0;
-}
-
-void draw_board(sf::RenderWindow window)
-{
-    
 }

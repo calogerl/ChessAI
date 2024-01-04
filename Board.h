@@ -1,6 +1,11 @@
 #include <SFML/Graphics.hpp>
-#define b
+#include <string>
+#include <bitset>
+#include <iostream>
+
 #ifndef b
+#define b
+
 class Board 
 {
     private:
@@ -12,10 +17,12 @@ class Board
         long int WP,WN,WB,WR,WQ,WK,BP,BN,BB,BR,BQ,BK;
         char chessBoard[8][8];
         void arraytoBitBoard();
-        int convertStringToBitBoard(bin_num);
+        int convertStringToBitBoard(std::string bin_num);
+
 
     public:
         Board(); //default constructor
+        void Display_Board();
         
         
 

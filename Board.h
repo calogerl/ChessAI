@@ -14,10 +14,10 @@ class Board
         sf::Texture Black;
         sf::Texture brown;
         //bitboards
-        long int WP,WN,WB,WR,WQ,WK,BP,BN,BB,BR,BQ,BK;
+        long long int WP,WN,WB,WR,WQ,WK,BP,BN,BB,BR,BQ,BK;
         char chessBoard[8][8];
         void arraytoBitBoard();
-        long convertStringToBitBoard(std::string bin_num);
+        long long int convertStringToBitBoard(std::string bin_num);
 
 
     public:

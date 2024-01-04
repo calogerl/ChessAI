@@ -7,7 +7,7 @@ Board::Board()
     //chesssboard representation, capital = white pieces
     chessBoard[0][0]='r', chessBoard[0][7]='r',chessBoard[7][0]='R',chessBoard[7][7]='R';
     chessBoard[0][1]='n',chessBoard[0][6]='n',chessBoard[7][1]='N',chessBoard[7][6]='N';
-    chessBoard[0][2]='b',chessBoard[0][5]='b', chessBoard[0][2]='B',chessBoard[0][5]='B';
+    chessBoard[0][2]='b',chessBoard[0][5]='b', chessBoard[7][2]='B',chessBoard[7][5]='B';
     chessBoard[0][3]='q',chessBoard[7][3]='Q';
     chessBoard[0][4]='k',chessBoard[7][4]='Q';
     for ( int i = 1 ; i < 7 ; i++)
@@ -27,6 +27,15 @@ Board::Board()
     }
     
 
+    }
+     for( int i = 0 ; i < 8; i++ )
+    {
+        std::cout << "\n {";
+        for(int j =0 ; j< 8 ; j++)
+        {
+            std::cout << " " << chessBoard[i][j];
+        }
+        std::cout << "}\n";
     }
     /*          {'r','n','b','q','k','b','n','r'},
                 {'p','p','p','p','p','p','p','p'},
@@ -48,7 +57,6 @@ void Board::arraytoBitBoard() //convert current board into bitboards
     std::string binary;
     for(int i=0 ; i<64 ; i++)
     {
-        std::cout << i << std::endl;
         binary="0000000000000000000000000000000000000000000000000000000000000000"; //64 bit binary number
         //need to add the concatenation method
         //not sure if this is correct for concatenation: can check later
@@ -56,7 +64,6 @@ void Board::arraytoBitBoard() //convert current board into bitboards
         switch (chessBoard[i/8][i%8])
         {
             case 'P':
-            std::cout << convertStringToBitBoard(binary) << std::endl;
             WP += convertStringToBitBoard(binary);
             break;
             case 'N':
@@ -103,19 +110,16 @@ void Board::arraytoBitBoard() //convert current board into bitboards
 
 }
 // will have to doule check the functionality of this
-long int Board:: convertStringToBitBoard(std::string bin_num)
+long long int Board:: convertStringToBitBoard(std::string bin_num)
 {
-    std::cout << bin_num << std::endl;
+    
     if (bin_num[0] == '0')
     {
-        std::cout << "Positive" << std::endl;
-        return std::stol(bin_num, nullptr ,2); //binary number string, radix 2;
+        return std::stoll(bin_num, nullptr ,2); //binary number string, radix 2;
     }
     else
     {
-        std::cout << "Negative" << std::endl;
-
-        return std::stol("1" + bin_num.substr(2), nullptr, 2)*2; // 1 represents negative number, taking 2's complement.
+        return std::stoll("1" + bin_num.substr(2), nullptr, 2)*2; // 1 represents negative number, taking 2's complement.
     }
 }
 
@@ -123,6 +127,31 @@ void Board::Display_Board()
 {
 
     arraytoBitBoard();
+
+    std::cout << std::bitset<64>(BP).to_string() << std::endl;
+
+    std::cout << std::bitset<64>(WP).to_string() << std::endl;
+
+    std::cout << std::bitset<64>(BB).to_string() << std::endl;
+
+    std::cout << std::bitset<64>(WB).to_string() << std::endl;
+
+    std::cout << std::bitset<64>(BR).to_string() << std::endl;
+
+    std::cout << std::bitset<64>(WR).to_string() << std::endl;
+
+    std::cout << std::bitset<64>(BN).to_string() << std::endl;
+
+    std::cout << std::bitset<64>(WN).to_string() << std::endl;
+
+    std::cout << std::bitset<64>(BQ).to_string() << std::endl;
+
+    std::cout << std::bitset<64>(WQ).to_string() << std::endl;
+
+    std::cout << std::bitset<64>(BK).to_string() << std::endl;
+
+    std::cout << std::bitset<64>(WK).to_string() << std::endl;
+
     
     char board[8][8]; //2d array of characters
     for( int i = 0 ; i < 64 ; i++ )
@@ -133,29 +162,29 @@ void Board::Display_Board()
     for( int i = 0 ; i < 64 ; i++ )
     {
         //check each bitboard for a 1 at current position
-        if (std::bitset<8>(BP).to_string()[i] == 1) {board[i/8][i%8]='p';}
+        if (std::bitset<64>(BP).to_string()[63-i] == '1') {board[i/8][i%8]='p';}
 
-        if (std::bitset<8>(WP).to_string()[i] == 1) {board[i/8][i%8]='P';}
+        if (std::bitset<64>(WP).to_string()[63-i] == '1') {board[i/8][i%8]='P';}
 
-        if (std::bitset<8>(WB).to_string()[i] == 1) {board[i/8][i%8]='B';}
+        if (std::bitset<64>(WB).to_string()[63-i] == '1') {board[i/8][i%8]='B';}
 
-        if (std::bitset<8>(BB).to_string()[i] == 1) {board[i/8][i%8]='b';}
+        if (std::bitset<64>(BB).to_string()[63-i] == '1') {board[i/8][i%8]='b';}
 
-        if (std::bitset<8>(WN).to_string()[i] == 1) {board[i/8][i%8]='N';}
+        if (std::bitset<64>(WN).to_string()[63-i] == '1') {board[i/8][i%8]='N';}
 
-        if (std::bitset<8>(BN).to_string()[i] == 1) {board[i/8][i%8]='n';}
+        if (std::bitset<64>(BN).to_string()[63-i] == '1') {board[i/8][i%8]='n';}
 
-        if (std::bitset<8>(WR).to_string()[i] == 1) {board[i/8][i%8]='R';}
+        if (std::bitset<64>(WR).to_string()[63-i] == '1') {board[i/8][i%8]='R';}
 
-        if (std::bitset<8>(BR).to_string()[i] == 1) {board[i/8][i%8]='r';}
+        if (std::bitset<64>(BR).to_string()[63-i] == '1') {board[i/8][i%8]='r';}
 
-        if (std::bitset<8>(WQ).to_string()[i] == 1) {board[i/8][i%8]='Q';}
+        if (std::bitset<64>(WQ).to_string()[63-i] == '1') {board[i/8][i%8]='Q';}
         
-        if (std::bitset<8>(BQ).to_string()[i] == 1) {board[i/8][i%8]='q';}
+        if (std::bitset<64>(BQ).to_string()[63-i] == '1') {board[i/8][i%8]='q';}
  
-        if (std::bitset<8>(WK).to_string()[i] == 1) {board[i/8][i%8]='K';}
+        if (std::bitset<64>(WK).to_string()[63-i] == '1') {board[i/8][i%8]='K';}
 
-        if (std::bitset<8>(BK).to_string()[i] == 1) {board[i/8][i%8]='k';}
+        if (std::bitset<64>(BK).to_string()[63-i] == '1') {board[i/8][i%8]='k';}
     }
     for( int i = 0 ; i < 8; i++ )
     {
@@ -164,7 +193,7 @@ void Board::Display_Board()
         {
             std::cout << " " << board[i][j];
         }
-        std::cout << "}";
+        std::cout << "}\n";
     }
  
 

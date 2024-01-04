@@ -31,7 +31,7 @@ int main()
     WPawn.loadFromFile("./pawn.png");
     BPawn.loadFromFile("./pawn1.png");
     WBishop.loadFromFile("./bishop.png");
-    BBishop.loadFromFile("./bishop1");
+    BBishop.loadFromFile("./bishop1.png");
     WRook.loadFromFile("./rook.png");
     BRook.loadFromFile("./rook1.png");
     WKnight.loadFromFile("./knight.png");
@@ -42,6 +42,7 @@ int main()
     BKing.loadFromFile("./king1.png");
 
     Board GameBoard;
+    GameBoard.Display_Board();
 
     while (window.isOpen()) 
     {
@@ -53,7 +54,8 @@ int main()
         }
 
         window.clear(); //clear previous contents
-        GameBoard.Display_Board();
+
+       
         //draw new stuff
         window.display(); //display to screen
     }

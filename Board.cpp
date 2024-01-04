@@ -48,6 +48,7 @@ void Board::arraytoBitBoard() //convert current board into bitboards
     std::string binary;
     for(int i=0 ; i<64 ; i++)
     {
+        std::cout << i << std::endl;
         binary="0000000000000000000000000000000000000000000000000000000000000000"; //64 bit binary number
         //need to add the concatenation method
         //not sure if this is correct for concatenation: can check later
@@ -55,6 +56,7 @@ void Board::arraytoBitBoard() //convert current board into bitboards
         switch (chessBoard[i/8][i%8])
         {
             case 'P':
+            std::cout << convertStringToBitBoard(binary) << std::endl;
             WP += convertStringToBitBoard(binary);
             break;
             case 'N':
@@ -101,21 +103,27 @@ void Board::arraytoBitBoard() //convert current board into bitboards
 
 }
 // will have to doule check the functionality of this
-long Board:: convertStringToBitBoard(std::string bin_num)
+long int Board:: convertStringToBitBoard(std::string bin_num)
 {
+    std::cout << bin_num << std::endl;
     if (bin_num[0] == '0')
     {
-        return std::stol(bin_num, nullptr, 2); //binary number string, radix 2;
+        std::cout << "Positive" << std::endl;
+        return std::stol(bin_num, nullptr ,2); //binary number string, radix 2;
     }
     else
     {
+        std::cout << "Negative" << std::endl;
+
         return std::stol("1" + bin_num.substr(2), nullptr, 2)*2; // 1 represents negative number, taking 2's complement.
     }
 }
 
 void Board::Display_Board()
 {
+
     arraytoBitBoard();
+    
     char board[8][8]; //2d array of characters
     for( int i = 0 ; i < 64 ; i++ )
     {

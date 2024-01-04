@@ -101,15 +101,15 @@ void Board::arraytoBitBoard() //convert current board into bitboards
 
 }
 // will have to doule check the functionality of this
-int Board:: convertStringToBitBoard(std::string bin_num)
+long Board:: convertStringToBitBoard(std::string bin_num)
 {
     if (bin_num[0] == '0')
     {
-        return std::stol(bin_num, 2); //binary number string, radix 2;
+        return std::stol(bin_num, nullptr, 2); //binary number string, radix 2;
     }
     else
     {
-        return std::stol("1" + bin_num.substr(2), 2)*2; // 1 represents negative number, taking 2's complement.
+        return std::stol("1" + bin_num.substr(2), nullptr, 2)*2; // 1 represents negative number, taking 2's complement.
     }
 }
 

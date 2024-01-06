@@ -9,44 +9,34 @@ Board::Board()
     chessBoard[0][1]='n',chessBoard[0][6]='n',chessBoard[7][1]='N',chessBoard[7][6]='N';
     chessBoard[0][2]='b',chessBoard[0][5]='b', chessBoard[7][2]='B',chessBoard[7][5]='B';
     chessBoard[0][3]='q',chessBoard[7][3]='Q';
-    chessBoard[0][4]='k',chessBoard[7][4]='Q';
+    chessBoard[0][4]='k',chessBoard[7][4]='K';
     for ( int i = 1 ; i < 7 ; i++)
     {
-    for( int j = 0 ; j < 8 ; j++ )
-    {
-        if ( i == 1)
+        for( int j = 0 ; j < 8 ; j++ )
         {
-            chessBoard[i][j]='p';
+            if ( i == 1)
+            {
+                chessBoard[i][j]='p';
+            }
+            else if ( i == 6)
+            {
+                chessBoard[i][j]='P';
+            }
+            else { chessBoard[i][j]=' '; }
+            
         }
-        else if ( i == 6)
-        {
-            chessBoard[i][j]='P';
-        }
-        else { chessBoard[i][j]=' '; }
-        
     }
-    
+    initRectArr();
 
-    }
-     for( int i = 0 ; i < 8; i++ )
-    {
-        std::cout << "\n {";
-        for(int j =0 ; j< 8 ; j++)
-        {
-            std::cout << " " << chessBoard[i][j];
-        }
-        std::cout << "}\n";
-    }
-    /*          {'r','n','b','q','k','b','n','r'},
+    /*
+                {'r','n','b','q','k','b','n','r'},
                 {'p','p','p','p','p','p','p','p'},
                 {' ',' ',' ',' ',' ',' ',' ',' '},
                 {' ',' ',' ',' ',' ',' ',' ',' '},
                 {' ',' ',' ',' ',' ',' ',' ',' '},
                 {' ',' ',' ',' ',' ',' ',' ',' '},
                 {'P','P','P','P','P','P','P','P'},
-                {'R','N','B','Q','K','B','N','R'}
-                
-        
+                {'R','N','B','Q','K','B','N','R'}   
 */
     
 }
@@ -195,6 +185,42 @@ void Board::Display_Board()
         }
         std::cout << "}\n";
     }
- 
+} 
 
+void Board::initRectArr()
+{
+    for (int i = 0 ; i < 8 ; i++)
+        {
+            for (int j = 0 ; j < 8 ; j++)
+            {
+                double x= BOARDWIDTH/8*(i); 
+                double y= BOARDLENGTH/8*(j); //middle of square
+                //create rect object with color and position
+                sf::RectangleShape rect(sf::Vector2f(100.0f, 100.f));
+                rect.setPosition(x,y);
+                rect.setOutlineThickness(1.f);
+                rect.setOutlineColor(sf::Color(0,0,0));
+                if ((i%2==0 && j%2!=0) || (i%2!=0 && j%2==0))
+                {
+                    rect.setFillColor(sf::Color(92, 64, 51));
+                }
+                else
+                {
+                    rect.setFillColor(sf::Color(196, 164, 132));
+                }
+                RectArr[i][j]=rect;
+            }
+        }  
 }
+void Board::DrawOnScreen(sf::RenderWindow & screen)
+    {
+        for (int i = 0 ; i < 8 ; i++)
+        {
+            for (int j = 0 ; j < 8 ; j++)
+            {
+                screen.draw(RectArr[i][j]);
+            }
+        }
+    }
+
+

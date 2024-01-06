@@ -2,6 +2,9 @@
 #include <string>
 #include <bitset>
 #include <iostream>
+#include <SFML/Graphics/RectangleShape.hpp>
+#define BOARDWIDTH 800
+#define BOARDLENGTH 800
 
 #ifndef b
 #define b
@@ -18,11 +21,14 @@ class Board
         char chessBoard[8][8];
         void arraytoBitBoard();
         long long int convertStringToBitBoard(std::string bin_num);
+        sf::RectangleShape RectArr[8][8]; //used for graphical purposes (drawing pieces at position, drawing game board)
 
+        void initRectArr();
 
     public:
         Board(); //default constructor
-        void Display_Board();
+        void Display_Board(); //test bitboard
+        void DrawOnScreen(sf::RenderWindow & screen);
         
         
 

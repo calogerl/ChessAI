@@ -55,6 +55,7 @@ int main()
 
         window.clear(); //clear previous contents
 
+        GameBoard.DrawOnScreen(window);
        
         //draw new stuff
         window.display(); //display to screen
